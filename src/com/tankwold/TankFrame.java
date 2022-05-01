@@ -1,4 +1,4 @@
-package com.studytankworld;
+package com.tankwold;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
