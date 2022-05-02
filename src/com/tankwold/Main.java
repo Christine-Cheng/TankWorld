@@ -9,7 +9,7 @@ public class Main {
         TankFrame frame=new TankFrame();
         while (true) {
             Thread.sleep(50);
-            frame.repaint(); // 可以利用线程 对页面进行刷新
+            frame.repaint(); //You can use threads to refresh the window
         }
     }
 }
