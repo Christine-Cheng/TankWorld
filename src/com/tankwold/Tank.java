@@ -38,7 +38,10 @@ public class Tank {
     }
     
     public void paint(Graphics graphics) {
+        Color color = graphics.getColor();
+        graphics.setColor(Color.yellow);
         graphics.fillRect(x, y, 50, 50);//改变起点让他动起来
+        graphics.setColor(color);
         move();
         
     }
