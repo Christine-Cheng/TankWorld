@@ -17,8 +17,10 @@ public class TankFrame extends Frame {
     Tank myTank = new Tank(200, 200, Direction.DOWN);//Encapsulate the attributes of the tank into the tank class
     Bullet bullet = new Bullet(300, 300, Direction.DOWN);
     
+    static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;//the game screen size
+    
     public TankFrame() {
-        this.setSize(800, 600);
+        this.setSize(GAME_WIDTH, GAME_HEIGHT);
         this.setResizable(false);
         this.setTitle("TankWar");
         this.setVisible(true);
@@ -29,6 +31,33 @@ public class TankFrame extends Frame {
             }
         });
         this.addKeyListener(new MyKeyListener());
+    }
+    
+    /**
+     * 利用双缓冲技术解决屏幕闪烁的问题
+     * 1.在内存中新建一个Image,然后新建画笔Graphics,设置颜色,然后画出画布,设置颜色,然后把画笔给下一步
+     * 2.显示
+     *
+     * 用双缓冲解决闪烁问题（不重要）
+     * 调用repaint()的时候会先调用 update()
+     * 截获update
+     * 首先把该画出来的东西（坦克， 子弹）先画在内存的图片中，图片大小和游戏画面一致
+     * 把内存中图片一次性画到屏幕上（内存的内容复制到显存）
+     */
+    Image offScreenImage = null;
+    
+    @Override
+    public void update(Graphics g) {
+        if (offScreenImage == null) {
+            offScreenImage = this.createImage(GAME_WIDTH, GAME_HEIGHT);
+        }
+        Graphics gOffScreen = offScreenImage.getGraphics();
+        Color c = gOffScreen.getColor();
+        gOffScreen.setColor(Color.BLACK);
+        gOffScreen.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+        gOffScreen.setColor(c);
+        paint(gOffScreen);
+        g.drawImage(offScreenImage, 0, 0, null);
     }
     
     /**
@@ -47,9 +76,10 @@ public class TankFrame extends Frame {
          * that is, let the tank draw itself
          */
         myTank.paint(graphics);
-    
+        
         bullet.paint(graphics);
     }
+    
     
     /**
      * keyboard listener class
