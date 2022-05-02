@@ -14,11 +14,7 @@ import java.awt.event.WindowEvent;
  **/
 public class TankFrame extends Frame {
     
-    int x = 200;
-    int y = 200;
-    private static final int SPEED = 10;//define step constants
-    
-    Direction direction = Direction.DOWN;//set direction's initial value
+    Tank myTank = new Tank(200, 200, Direction.DOWN);//Encapsulate the attributes of the tank into the tank class
     
     public TankFrame() {
         this.setSize(800, 600);
@@ -44,27 +40,12 @@ public class TankFrame extends Frame {
      */
     @Override
     public void paint(Graphics graphics) {
-        //System.out.println("哈哈哈");
-        //The first two parameters are the starting point coordinates
-        //The last two parameters are width and height
-        graphics.fillRect(x, y, 50, 50);//改变起点让他动起来
-        //x += 1;
-        //y += 1;
-    
-        switch (direction) {
-            case LEFT:
-                x -= SPEED;
-                break;
-            case UP:
-                y -= SPEED;
-                break;
-            case RIGHT:
-                x += SPEED;
-                break;
-            case DOWN:
-                y += SPEED;
-                break;
-        }
+        /**
+         * In order to not destroy the encapsulation characteristics,
+         * let the encapsulated object (tank) handle its own attributes,
+         * that is, let the tank draw itself
+         */
+        myTank.paint(graphics);
     }
     
     /**
@@ -137,10 +118,10 @@ public class TankFrame extends Frame {
         }
         
         private void setManTankDirection() {
-            if (blLeft) direction = Direction.LEFT;
-            if (blUp) direction = Direction.UP;
-            if (blRight) direction = Direction.RIGHT;
-            if (blDown) direction = Direction.DOWN;
+            if (blLeft) myTank.setDirection(Direction.LEFT);
+            if (blUp) myTank.setDirection(Direction.UP);
+            if (blRight) myTank.setDirection(Direction.RIGHT);
+            if (blDown) myTank.setDirection(Direction.DOWN);
         }
     }
 }
