@@ -118,10 +118,16 @@ public class TankFrame extends Frame {
         }
         
         private void setManTankDirection() {
-            if (blLeft) myTank.setDirection(Direction.LEFT);
-            if (blUp) myTank.setDirection(Direction.UP);
-            if (blRight) myTank.setDirection(Direction.RIGHT);
-            if (blDown) myTank.setDirection(Direction.DOWN);
+            if (!blLeft && !blUp && !blRight && !blDown) {//stop
+                myTank.setMoving(false);
+            } else {
+                myTank.setMoving(true);//move
+                if (blLeft) myTank.setDirection(Direction.LEFT);
+                if (blUp) myTank.setDirection(Direction.UP);
+                if (blRight) myTank.setDirection(Direction.RIGHT);
+                if (blDown) myTank.setDirection(Direction.DOWN);
+            }
+            
         }
     }
 }
