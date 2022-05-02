@@ -6,6 +6,7 @@ import java.awt.*;
 
 /**
  * the tank's default properties
+ *
  * @author Happy
  * @create 2022/5/2-21:48
  **/
@@ -13,12 +14,14 @@ public class Tank {
     private int x, y;
     private Direction direction = Direction.DOWN;//set direction's initial value
     private static final int SPEED = 10;//define step constants
-    private boolean moving=false;//set default moving status
+    private boolean moving = false;//set default moving status
+    private TankFrame tankFrame = null;
     
-    public Tank(int x, int y, Direction direction) {
+    public Tank(int x, int y, Direction direction, TankFrame tankFrame) {
         this.x = x;
         this.y = y;
         this.direction = direction;
+        this.tankFrame = tankFrame;
     }
     
     public Direction getDirection() {
@@ -62,5 +65,14 @@ public class Tank {
                 y += SPEED;
                 break;
         }
+    }
+    
+    /**
+     * 开火
+     * 由于开火这个属性属于Tank,但是Tank自己new的Bullet不能够信息显示开火发射子弹的信息.只有TankFrame这个才可以显示画面
+     * 如果Tank需要把new的Bullet放到TankFrame进行显示,那么Tank必须可以持有TankFrame的引用.即是,在成员变量中添加TankFrame属性
+     */
+    public void fire() {
+        tankFrame.bullet = new Bullet(this.x, this.y, this.direction);
     }
 }

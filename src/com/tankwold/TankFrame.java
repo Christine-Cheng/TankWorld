@@ -14,7 +14,7 @@ import java.awt.event.WindowEvent;
  **/
 public class TankFrame extends Frame {
     
-    Tank myTank = new Tank(200, 200, Direction.DOWN);//Encapsulate the attributes of the tank into the tank class
+    Tank myTank = new Tank(200, 200, Direction.DOWN,this);//Encapsulate the attributes of the tank into the tank class
     Bullet bullet = new Bullet(300, 300, Direction.DOWN);
     
     static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;//the game screen size
@@ -144,6 +144,8 @@ public class TankFrame extends Frame {
                 case KeyEvent.VK_DOWN:
                     blDown = false;
                     break;
+                case KeyEvent.VK_CONTROL:
+                    myTank.fire();//按control键发射子弹
                 default:
                     break;
             }
