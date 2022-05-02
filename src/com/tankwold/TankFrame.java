@@ -40,14 +40,12 @@ public class TankFrame extends Frame {
      */
     @Override
     public void paint(Graphics graphics) {
-        System.out.println("哈哈哈");
+        //System.out.println("哈哈哈");
         //The first two parameters are the starting point coordinates
         //The last two parameters are width and height
         graphics.fillRect(x, y, 50, 50);//改变起点让他动起来
-        graphics.setColor(Color.red);
-        graphics.fill3DRect(400, 400, 50, 30, false);
-        x += 1;
-        y += 1;
+        //x += 1;
+        //y += 1;
     }
     
     /**
@@ -57,11 +55,27 @@ public class TankFrame extends Frame {
         @Override
         public void keyPressed(KeyEvent e) {
             super.keyPressed(e);
-            System.out.println(e.getKeyCode());
-            System.out.println("key pressed");
+            //System.out.println(e.getKeyCode());
+            //System.out.println("key pressed");
             //repaint();//repaint()默认调用 paint() 进行刷新页面
             //x += 1;
             //y += 1;
+            
+            int keyCode = e.getKeyCode();
+            switch (keyCode) {
+                case KeyEvent.VK_LEFT:
+                    x -= 10;
+                    break;
+                case KeyEvent.VK_UP:
+                    y -= 10;
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    x += 10;
+                    break;
+                case KeyEvent.VK_DOWN:
+                    y += 10;
+                    break;
+            }
         }
         
         @Override
