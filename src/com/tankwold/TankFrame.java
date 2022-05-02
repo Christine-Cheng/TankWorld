@@ -7,6 +7,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Happy
@@ -14,9 +16,9 @@ import java.awt.event.WindowEvent;
  **/
 public class TankFrame extends Frame {
     
-    Tank myTank = new Tank(200, 200, Direction.DOWN,this);//Encapsulate the attributes of the tank into the tank class
-    Bullet bullet = new Bullet(300, 300, Direction.DOWN);
-    
+    Tank myTank = new Tank(200, 200, Direction.DOWN, this);//Encapsulate the attributes of the tank into the tank class
+    //Bullet bullet = new Bullet(300, 300, Direction.DOWN);//单个子弹不够用
+    List<Bullet> bulletList = new ArrayList<>();//set bullet's container
     static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;//the game screen size
     
     public TankFrame() {
@@ -37,7 +39,7 @@ public class TankFrame extends Frame {
      * 利用双缓冲技术解决屏幕闪烁的问题
      * 1.在内存中新建一个Image,然后新建画笔Graphics,设置颜色,然后画出画布,设置颜色,然后把画笔给下一步
      * 2.显示
-     *
+     * <p>
      * 用双缓冲解决闪烁问题（不重要）
      * 调用repaint()的时候会先调用 update()
      * 截获update
@@ -77,7 +79,10 @@ public class TankFrame extends Frame {
          */
         myTank.paint(graphics);
         
-        bullet.paint(graphics);
+        //bullet.paint(graphics);//单个子弹不够用
+        for (Bullet bullet : bulletList) {//遍历每一个子弹
+            bullet.paint(graphics);
+        }
     }
     
     

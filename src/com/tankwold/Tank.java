@@ -73,6 +73,7 @@ public class Tank {
      * 如果Tank需要把new的Bullet放到TankFrame进行显示,那么Tank必须可以持有TankFrame的引用.即是,在成员变量中添加TankFrame属性
      */
     public void fire() {
-        tankFrame.bullet = new Bullet(this.x, this.y, this.direction);
+        //tankFrame.bullet = new Bullet(this.x, this.y, this.direction);//单个子弹不够用
+        tankFrame.bulletList.add(new Bullet(this.x, this.y, this.direction));
     }
 }
