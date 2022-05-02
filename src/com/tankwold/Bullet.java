@@ -10,7 +10,7 @@ import java.awt.*;
  **/
 public class Bullet {
     private int x, y;
-    private final static int SPEED = 10;
+    private final static int SPEED = 15;
     private Direction direction;
     private final static int WIDTH = 10, HEIGHT = 10;
     
