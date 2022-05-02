@@ -52,6 +52,11 @@ public class TankFrame extends Frame {
      * keyboard listener class
      */
     class MyKeyListener extends KeyAdapter {
+        boolean blLeft = false;
+        boolean blUp = false;
+        boolean blRight = false;
+        boolean blDown = false;
+        
         @Override
         public void keyPressed(KeyEvent e) {
             super.keyPressed(e);
@@ -61,19 +66,23 @@ public class TankFrame extends Frame {
             //x += 1;
             //y += 1;
             
+            //如果只是上下左右进行判断那么只能进行单个方向移动 不能进行合成方向进行移动.
+            //所以进行对按键进行设置Boolean值 按下为true抬起的时候复位为初始值false
             int keyCode = e.getKeyCode();
             switch (keyCode) {
                 case KeyEvent.VK_LEFT:
-                    x -= 10;
+                    blLeft = true;
                     break;
                 case KeyEvent.VK_UP:
-                    y -= 10;
+                    blUp = true;
                     break;
                 case KeyEvent.VK_RIGHT:
-                    x += 10;
+                    blRight = true;
                     break;
                 case KeyEvent.VK_DOWN:
-                    y += 10;
+                    blDown = true;
+                    break;
+                default:
                     break;
             }
         }
@@ -86,6 +95,24 @@ public class TankFrame extends Frame {
             // repaint();
             //x += 30;
             //y += 30;
+            
+            int keyCode = e.getKeyCode();
+            switch (keyCode) {
+                case KeyEvent.VK_LEFT:
+                    blLeft = false;
+                    break;
+                case KeyEvent.VK_UP:
+                    blUp = false;
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    blRight = false;
+                    break;
+                case KeyEvent.VK_DOWN:
+                    blDown = false;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
