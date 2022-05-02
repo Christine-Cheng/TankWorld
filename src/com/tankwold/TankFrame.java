@@ -1,5 +1,7 @@
 package com.tankwold;
 
+import com.tankwold.enums.Direction;
+
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -14,6 +16,9 @@ public class TankFrame extends Frame {
     
     int x = 200;
     int y = 200;
+    private static final int SPEED = 10;//define step constants
+    
+    Direction direction = Direction.DOWN;//set direction's initial value
     
     public TankFrame() {
         this.setSize(800, 600);
@@ -26,7 +31,6 @@ public class TankFrame extends Frame {
                 System.exit(0);
             }
         });
-        
         this.addKeyListener(new MyKeyListener());
     }
     
@@ -46,6 +50,21 @@ public class TankFrame extends Frame {
         graphics.fillRect(x, y, 50, 50);//改变起点让他动起来
         //x += 1;
         //y += 1;
+    
+        switch (direction) {
+            case LEFT:
+                x -= SPEED;
+                break;
+            case UP:
+                y -= SPEED;
+                break;
+            case RIGHT:
+                x += SPEED;
+                break;
+            case DOWN:
+                y += SPEED;
+                break;
+        }
     }
     
     /**
@@ -85,6 +104,7 @@ public class TankFrame extends Frame {
                 default:
                     break;
             }
+            setManTankDirection();
         }
         
         @Override
@@ -113,6 +133,14 @@ public class TankFrame extends Frame {
                 default:
                     break;
             }
+            setManTankDirection();
+        }
+        
+        private void setManTankDirection() {
+            if (blLeft) direction = Direction.LEFT;
+            if (blUp) direction = Direction.UP;
+            if (blRight) direction = Direction.RIGHT;
+            if (blDown) direction = Direction.DOWN;
         }
     }
 }
