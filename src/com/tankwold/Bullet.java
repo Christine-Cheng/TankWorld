@@ -9,18 +9,20 @@ import java.awt.*;
  * @create 2022/5/2-22:37
  **/
 public class Bullet {
+    private Tank tank;
     private int x, y;
+    private final static int BULLET_WIDTH = 10, BULLET_HEIGHT = 10;
     private final static int SPEED = 20;
     private Direction direction;
-    private final static int WIDTH = 10, HEIGHT = 10;
     private boolean live = true;//子弹存活
     private TankFrame tankFrame = null;
     
-    public Bullet(int x, int y, Direction direction, TankFrame tankFrame) {
-        this.x = x;
-        this.y = y;
+    public Bullet(int x, int y, Direction direction, TankFrame tankFrame, Tank tank) {
+        this.x = tank.getX() + tank.getTANK_WIDTH() / 2 - BULLET_WIDTH / 2;
+        this.y = tank.getY() + tank.getTANK_HEIGHT() / 2 - BULLET_HEIGHT / 2;
         this.direction = direction;
         this.tankFrame = tankFrame;
+        this.tank = tank;
     }
     
     public Direction getDirection() {
@@ -39,7 +41,7 @@ public class Bullet {
         
         Color color = graphics.getColor();
         graphics.setColor(Color.red);
-        graphics.fillOval(x, y, WIDTH, HEIGHT);
+        graphics.fillOval(x, y, BULLET_WIDTH, BULLET_HEIGHT);
         graphics.setColor(color);
         move();
     }

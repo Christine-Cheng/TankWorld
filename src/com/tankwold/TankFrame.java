@@ -15,7 +15,7 @@ import java.util.List;
  * @create 2022/5/1-0:12
  **/
 public class TankFrame extends Frame {
-    
+    //set tank's default direction and starting coordinates
     Tank myTank = new Tank(200, 200, Direction.DOWN, this);//Encapsulate the attributes of the tank into the tank class
     //Bullet bullet = new Bullet(300, 300, Direction.DOWN);//单个子弹不够用
     List<Bullet> bulletList = new ArrayList<>();//set bullet's container

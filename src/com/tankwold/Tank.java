@@ -12,6 +12,7 @@ import java.awt.*;
  **/
 public class Tank {
     private int x, y;
+    private int TANK_WIDTH = 50, TANK_HEIGHT = 50;
     private Direction direction = Direction.DOWN;//set direction's initial value
     private static final int SPEED = 10;//define step constants
     private boolean moving = false;//set default moving status
@@ -22,6 +23,22 @@ public class Tank {
         this.y = y;
         this.direction = direction;
         this.tankFrame = tankFrame;
+    }
+    
+    public int getTANK_WIDTH() {
+        return TANK_WIDTH;
+    }
+    
+    public int getTANK_HEIGHT() {
+        return TANK_HEIGHT;
+    }
+    
+    public int getX() {
+        return x;
+    }
+    
+    public int getY() {
+        return y;
     }
     
     public Direction getDirection() {
@@ -43,7 +60,7 @@ public class Tank {
     public void paint(Graphics graphics) {
         Color color = graphics.getColor();
         graphics.setColor(Color.yellow);
-        graphics.fillRect(x, y, 50, 50);//改变起点让他动起来
+        graphics.fillRect(x, y, TANK_WIDTH, TANK_HEIGHT);//改变起点让他动起来
         graphics.setColor(color);
         move();
         
@@ -74,6 +91,6 @@ public class Tank {
      */
     public void fire() {
         //tankFrame.bullet = new Bullet(this.x, this.y, this.direction);//单个子弹不够用
-        tankFrame.bulletList.add(new Bullet(this.x, this.y, this.direction,this.tankFrame));
+        tankFrame.bulletList.add(new Bullet(this.x, this.y, this.direction, this.tankFrame, this));
     }
 }
