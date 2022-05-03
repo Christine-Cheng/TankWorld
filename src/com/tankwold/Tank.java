@@ -74,6 +74,6 @@ public class Tank {
      */
     public void fire() {
         //tankFrame.bullet = new Bullet(this.x, this.y, this.direction);//单个子弹不够用
-        tankFrame.bulletList.add(new Bullet(this.x, this.y, this.direction));
+        tankFrame.bulletList.add(new Bullet(this.x, this.y, this.direction,this.tankFrame));
     }
 }

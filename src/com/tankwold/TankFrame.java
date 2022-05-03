@@ -62,6 +62,29 @@ public class TankFrame extends Frame {
         g.drawImage(offScreenImage, 0, 0, null);
     }
     
+    
+    /**
+     * 用forEach的bug
+     * for (Bullet bullet : bulletList) {
+     * //遍历每一个子弹
+     * bullet.paint(graphics);
+     * }
+     * Bullet.java中删除子弹
+     * if (!live) {
+     * tankFrame.bulletList.remove(this);//子弹死了就移除
+     * }
+     * forEach用的的是集合内部的Iterator,在该迭代器迭代的时候是不允许其他方式(类)进行添加或者删除,只能在此处进行删除修改.
+     * 若要在Bullet.java中对失效的的子弹进行删除,那么不能够用forEach
+     * <p>
+     * 所以用以下的方式,或者Iterator方式进行迭代
+     * for (int i = 0; i < bulletList.size(); i++) {
+     * bulletList.get(i).paint(graphics);
+     * }
+     * Bullet.java中删除子弹
+     * if (!live) {
+     * tankFrame.bulletList.remove(this);//子弹死了就移除
+     * }
+     */
     /**
      * Inherit Frame class and override paint() method
      * The origin of the coordinates is in the upper left corner
@@ -76,7 +99,7 @@ public class TankFrame extends Frame {
         graphics.setColor(Color.white);
         //当前的子弹在飞出页面后依旧在内存中存在,这样就存在内存满溢出泄露
         //Java中的内存泄露和容器有关系,如果容器中的引用用完了不清除那么容易出现内存泄露的问题
-        graphics.drawString("子弹的数目:"+bulletList.size(), 10, 60);
+        graphics.drawString("子弹的数目:" + bulletList.size(), 10, 60);
         graphics.setColor(color);
         
         /**
@@ -87,9 +110,18 @@ public class TankFrame extends Frame {
         myTank.paint(graphics);
         
         //bullet.paint(graphics);//单个子弹不够用
-        for (Bullet bullet : bulletList) {//遍历每一个子弹
-            bullet.paint(graphics);
+        for (int i = 0; i < bulletList.size(); i++) {
+            //遍历每一个子弹
+            bulletList.get(i).paint(graphics);
         }
+        
+        //for (Iterator<Bullet> bulletIterator = bulletList.iterator(); bulletIterator.hasNext(); ) {
+        //    Bullet bullet = bulletIterator.next();
+        //    if (!bullet.live()) {
+        //        bulletIterator.remove();//Iterator可以进行同步删除
+        //    }
+        //    bullet.paint(graphics);
+        //}
     }
     
     
