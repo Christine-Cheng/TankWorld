@@ -72,6 +72,13 @@ public class TankFrame extends Frame {
      */
     @Override
     public void paint(Graphics graphics) {
+        Color color = graphics.getColor();
+        graphics.setColor(Color.white);
+        //当前的子弹在飞出页面后依旧在内存中存在,这样就存在内存满溢出泄露
+        //Java中的内存泄露和容器有关系,如果容器中的引用用完了不清除那么容易出现内存泄露的问题
+        graphics.drawString("子弹的数目:"+bulletList.size(), 10, 60);
+        graphics.setColor(color);
+        
         /**
          * In order to not destroy the encapsulation characteristics,
          * let the encapsulated object (tank) handle its own attributes,
