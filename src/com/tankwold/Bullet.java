@@ -38,11 +38,27 @@ public class Bullet {
             //此为普通for循环下进行删除,配合TankFrame.java中for (int i = 0; i < bulletList.size(); i++)
             tankFrame.bulletList.remove(this);//子弹死了就移除
         }
-        
+    
         Color color = graphics.getColor();
-        graphics.setColor(Color.red);
-        graphics.fillOval(x, y, BULLET_WIDTH, BULLET_HEIGHT);
-        graphics.setColor(color);
+        //graphics.setColor(Color.red);
+        //graphics.fillOval(x, y, BULLET_WIDTH, BULLET_HEIGHT);
+        //graphics.setColor(color);
+        //子弹:图片代替
+        switch (direction) {
+            case LEFT:
+                graphics.drawImage(ResourceManager.bulletL, x, y, null);
+                break;
+            case UP:
+                graphics.drawImage(ResourceManager.bulletU, x, y, null);
+                break;
+            case RIGHT:
+                graphics.drawImage(ResourceManager.bulletR, x, y, null);
+                break;
+            case DOWN:
+                graphics.drawImage(ResourceManager.bulletD, x, y, null);
+                break;
+        }
+    
         move();
     }
     
