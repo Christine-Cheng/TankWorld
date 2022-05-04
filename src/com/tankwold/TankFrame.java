@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -101,27 +102,27 @@ public class TankFrame extends Frame {
         //Java中的内存泄露和容器有关系,如果容器中的引用用完了不清除那么容易出现内存泄露的问题
         graphics.drawString("子弹的数目:" + bulletList.size(), 10, 60);
         graphics.setColor(color);
-        
+    
         /**
          * In order to not destroy the encapsulation characteristics,
          * let the encapsulated object (tank) handle its own attributes,
          * that is, let the tank draw itself
          */
         myTank.paint(graphics);
-        
+    
         //bullet.paint(graphics);//单个子弹不够用
-        for (int i = 0; i < bulletList.size(); i++) {
-            //遍历每一个子弹
-            bulletList.get(i).paint(graphics);
-        }
-        
-        //for (Iterator<Bullet> bulletIterator = bulletList.iterator(); bulletIterator.hasNext(); ) {
-        //    Bullet bullet = bulletIterator.next();
-        //    if (!bullet.live()) {
-        //        bulletIterator.remove();//Iterator可以进行同步删除
-        //    }
-        //    bullet.paint(graphics);
+        //for (int i = 0; i < bulletList.size(); i++) {
+        //    //遍历每一个子弹
+        //    bulletList.get(i).paint(graphics);
         //}
+    
+        for (Iterator<Bullet> bulletIterator = bulletList.iterator(); bulletIterator.hasNext(); ) {
+            Bullet bullet = bulletIterator.next();
+            if (!bullet.live()) {
+                bulletIterator.remove();//Iterator可以进行同步删除
+            }
+            bullet.paint(graphics);
+        }
     }
     
     

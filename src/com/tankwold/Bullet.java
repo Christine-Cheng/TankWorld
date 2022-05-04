@@ -34,10 +34,10 @@ public class Bullet {
     }
     
     public void paint(Graphics graphics) {
-        if (!live) {
-            //此为普通for循环下进行删除,配合TankFrame.java中for (int i = 0; i < bulletList.size(); i++)
-            tankFrame.bulletList.remove(this);//子弹死了就移除
-        }
+        //if (!live) {
+        //    //此为普通for循环下进行删除,配合TankFrame.java中for (int i = 0; i < bulletList.size(); i++)
+        //    tankFrame.bulletList.remove(this);//子弹死了就移除
+        //}
     
         Color color = graphics.getColor();
         //graphics.setColor(Color.red);
