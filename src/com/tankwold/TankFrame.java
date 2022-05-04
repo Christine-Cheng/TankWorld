@@ -102,6 +102,7 @@ public class TankFrame extends Frame {
         //当前的子弹在飞出页面后依旧在内存中存在,这样就存在内存满溢出泄露
         //Java中的内存泄露和容器有关系,如果容器中的引用用完了不清除那么容易出现内存泄露的问题
         graphics.drawString("子弹的数目:" + bulletList.size(), 10, 60);
+        graphics.drawString("enemyTank的数目:" + enemyTankList.size(), 10, 80);
         graphics.setColor(color);
     
         /**
@@ -117,6 +118,7 @@ public class TankFrame extends Frame {
         //    bulletList.get(i).paint(graphics);
         //}
     
+        //迭代删除失效的子弹
         for (Iterator<Bullet> bulletIterator = bulletList.iterator(); bulletIterator.hasNext(); ) {
             Bullet bullet = bulletIterator.next();
             if (!bullet.live()) {
@@ -128,6 +130,15 @@ public class TankFrame extends Frame {
         //paint enemy tanks
         for (int i = 0; i < enemyTankList.size(); i++) {
             enemyTankList.get(i).paint(graphics);
+        }
+    
+        //test bullet collides with tank
+        for (int i = 0; i < bulletList.size(); i++) {
+            for (int j = 0; j < enemyTankList.size(); j++) {
+                Bullet bullet = bulletList.get(i);
+                Tank tank = enemyTankList.get(j);
+                bullet.collideWithTank(tank);
+            }
         }
     }
     

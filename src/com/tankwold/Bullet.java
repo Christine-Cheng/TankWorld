@@ -10,10 +10,11 @@ import java.awt.*;
  **/
 public class Bullet {
     private int x, y;//子弹的起点
-    private static int BULLET_WIDTH = ResourceManager.bulletD.getWidth(), BULLET_HEIGHT = ResourceManager.bulletD.getHeight();
+    private static int BULLET_WIDTH = ResourceManager.bulletD.getWidth();//默认取用子弹向下的宽度
+    private static int BULLET_HEIGHT = ResourceManager.bulletD.getHeight();//默认取用子弹向下的高度
     private final static int SPEED = 20;
     private Direction direction;
-    private boolean live = true;//子弹存活
+    private boolean living = true;//子弹存活
     private TankFrame tankFrame = null;
     
     public Bullet(int x, int y, Direction direction, TankFrame tankFrame) {
@@ -37,15 +38,23 @@ public class Bullet {
         //子弹:图片代替
         switch (direction) {
             case LEFT:
+                //BULLET_WIDTH = ResourceManager.bulletL.getWidth();
+                //BULLET_HEIGHT = ResourceManager.bulletL.getHeight();
                 graphics.drawImage(ResourceManager.bulletL, x, y, null);
                 break;
             case UP:
+                //BULLET_WIDTH = ResourceManager.bulletU.getWidth();
+                //BULLET_HEIGHT = ResourceManager.bulletU.getHeight();
                 graphics.drawImage(ResourceManager.bulletU, x, y, null);
                 break;
             case RIGHT:
+                //BULLET_WIDTH = ResourceManager.bulletR.getWidth();
+                //BULLET_HEIGHT = ResourceManager.bulletR.getHeight();
                 graphics.drawImage(ResourceManager.bulletR, x, y, null);
                 break;
             case DOWN:
+                //BULLET_WIDTH = ResourceManager.bulletD.getWidth();
+                //BULLET_HEIGHT = ResourceManager.bulletD.getHeight();
                 graphics.drawImage(ResourceManager.bulletD, x, y, null);
                 break;
         }
@@ -69,12 +78,25 @@ public class Bullet {
                 y += SPEED;
                 break;
         }
-        
         live();
     }
     
     public boolean live() {
-        if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) live = false;//子弹出边界就从容器中移除标志
-        return live;
+        if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) living = false;//子弹出边界就从容器中移除标志
+        return living;
+    }
+    
+    //碰撞测试
+    public void collideWithTank(Tank tank) {
+        Rectangle rectangle1 = new Rectangle(this.x, this.y, BULLET_WIDTH, BULLET_HEIGHT);//bullet
+        Rectangle rectangle2 = new Rectangle(tank.getX(), tank.getY(), tank.getTANK_WIDTH(), tank.getTANK_HEIGHT());//tank
+        if (rectangle1.intersects(rectangle2)) {
+            this.die();
+            tank.die();
+        }
+    }
+    
+    private void die() {
+        this.living = false;
     }
 }

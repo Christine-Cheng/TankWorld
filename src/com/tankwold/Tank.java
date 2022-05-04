@@ -12,11 +12,13 @@ import java.awt.*;
  **/
 public class Tank {
     private int x, y;//坦克的起点
-    private int TANK_WIDTH = 0, TANK_HEIGHT = 0;
+    private int TANK_WIDTH = ResourceManager.tankD.getWidth();//默认取用tank向下的宽度
+    private int TANK_HEIGHT = ResourceManager.tankD.getHeight();//默认取用tank向下的高度
     private Direction direction = Direction.DOWN;//set direction's initial value
     private static final int SPEED = 10;//define step constants
     private boolean moving = false;//set default moving status
     private TankFrame tankFrame = null;
+    private boolean living = true;//is tank survive
     
     {
         switch (this.direction) {
@@ -79,6 +81,9 @@ public class Tank {
     }
     
     public void paint(Graphics graphics) {
+        if (!living)
+            tankFrame.enemyTankList.remove(this);//if tank is dead , tank will not paint , and remove tank from container
+    
         Color color = graphics.getColor();
         //graphics.setColor(Color.yellow);
         //graphics.fillRect(x, y, TANK_WIDTH, TANK_HEIGHT);//改变起点让他动起来
@@ -160,5 +165,9 @@ public class Tank {
         }
     
         tankFrame.bulletList.add(new Bullet(bulletX, bulletY, this.direction, this.tankFrame));
+    }
+    
+    public void die() {
+        this.living = false;
     }
 }
