@@ -65,16 +65,16 @@ public class Tank {
         //坦克:图片代替
         switch (direction) {
             case LEFT:
-                graphics.drawImage(ResourceManager.tankLeft, x, y, null);
+                graphics.drawImage(ResourceManager.tankL, x, y, null);
                 break;
             case UP:
-                graphics.drawImage(ResourceManager.tankUp, x, y, null);
+                graphics.drawImage(ResourceManager.tankU, x, y, null);
                 break;
             case RIGHT:
-                graphics.drawImage(ResourceManager.tankRight, x, y, null);
+                graphics.drawImage(ResourceManager.tankR, x, y, null);
                 break;
             case DOWN:
-                graphics.drawImage(ResourceManager.tankDown, x, y, null);
+                graphics.drawImage(ResourceManager.tankD, x, y, null);
                 break;
         }
         move();
