@@ -59,11 +59,25 @@ public class Tank {
     
     public void paint(Graphics graphics) {
         Color color = graphics.getColor();
-        graphics.setColor(Color.yellow);
-        graphics.fillRect(x, y, TANK_WIDTH, TANK_HEIGHT);//改变起点让他动起来
-        graphics.setColor(color);
+        //graphics.setColor(Color.yellow);
+        //graphics.fillRect(x, y, TANK_WIDTH, TANK_HEIGHT);//改变起点让他动起来
+        //graphics.setColor(color);
+        //坦克:图片代替
+        switch (direction) {
+            case LEFT:
+                graphics.drawImage(ResourceManager.tankLeft, x, y, null);
+                break;
+            case UP:
+                graphics.drawImage(ResourceManager.tankUp, x, y, null);
+                break;
+            case RIGHT:
+                graphics.drawImage(ResourceManager.tankRight, x, y, null);
+                break;
+            case DOWN:
+                graphics.drawImage(ResourceManager.tankDown, x, y, null);
+                break;
+        }
         move();
-        
     }
     
     private void move() {
