@@ -1,6 +1,7 @@
 package com.tankwold;
 
 import com.tankwold.enums.Direction;
+import com.tankwold.enums.Group;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -17,7 +18,7 @@ import java.util.List;
  **/
 public class TankFrame extends Frame {
     //set tank's default direction and starting coordinates
-    Tank myTank = new Tank(200, 400, Direction.UP, this);//Encapsulate the attributes of the tank into the tank class
+    Tank myTank = new Tank(200, 400, Direction.UP, Group.GOOD, this);//Encapsulate the attributes of the tank into the tank class
     //Bullet bullet = new Bullet(300, 300, Direction.DOWN);//单个子弹不够用
     List<Bullet> bulletList = new ArrayList<>();//set bullet's container
     List<Tank> enemyTankList = new ArrayList<>();

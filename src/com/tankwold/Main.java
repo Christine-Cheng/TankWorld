@@ -1,6 +1,7 @@
 package com.tankwold;
 
 import com.tankwold.enums.Direction;
+import com.tankwold.enums.Group;
 
 /**
  * @author Happy
@@ -12,7 +13,7 @@ public class Main {
         
         //初始化敌方坦克
         for (int i = 0; i < 5; i++) {
-            frame.enemyTankList.add(new Tank(50 + i * 80, 200, Direction.DOWN, frame));
+            frame.enemyTankList.add(new Tank(50 + i * 80, 200, Direction.DOWN, Group.BAD, frame));
         }
         while (true) {
             Thread.sleep(50);

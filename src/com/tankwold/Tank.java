@@ -1,8 +1,10 @@
 package com.tankwold;
 
 import com.tankwold.enums.Direction;
+import com.tankwold.enums.Group;
 
 import java.awt.*;
+import java.util.Random;
 
 /**
  * the tank's default properties
@@ -16,9 +18,11 @@ public class Tank {
     private int TANK_HEIGHT = ResourceManager.tankD.getHeight();//默认取用tank向下的高度
     private Direction direction = Direction.DOWN;//set direction's initial value
     private static final int SPEED = 10;//define step constants
-    private boolean moving = false;//set default moving status
+    private boolean moving = true;//set default moving status
     private TankFrame tankFrame = null;
     private boolean living = true;//is tank survive
+    private Group group = Group.BAD;//default tank's group is bad
+    private Random random = new Random();
     
     {
         switch (this.direction) {
@@ -41,44 +45,14 @@ public class Tank {
         }
     }
     
-    public Tank(int x, int y, Direction direction, TankFrame tankFrame) {
+    public Tank(int x, int y, Direction direction, Group group, TankFrame tankFrame) {
         this.x = x;
         this.y = y;
         this.direction = direction;
         this.tankFrame = tankFrame;
+        this.group = group;
     }
     
-    public int getTANK_WIDTH() {
-        return TANK_WIDTH;
-    }
-    
-    public int getTANK_HEIGHT() {
-        return TANK_HEIGHT;
-    }
-    
-    public int getX() {
-        return x;
-    }
-    
-    public int getY() {
-        return y;
-    }
-    
-    public Direction getDirection() {
-        return direction;
-    }
-    
-    public void setDirection(Direction direction) {
-        this.direction = direction;
-    }
-    
-    public boolean isMoving() {
-        return moving;
-    }
-    
-    public void setMoving(boolean moving) {
-        this.moving = moving;
-    }
     
     public void paint(Graphics graphics) {
         if (!living)
@@ -122,6 +96,8 @@ public class Tank {
                 y += SPEED;
                 break;
         }
+    
+        if (random.nextInt(10) > 8) this.fire();//随机开火
     }
     
     /**
@@ -164,10 +140,50 @@ public class Tank {
                 break;
         }
     
-        tankFrame.bulletList.add(new Bullet(bulletX, bulletY, this.direction, this.tankFrame));
+        tankFrame.bulletList.add(new Bullet(bulletX, bulletY, this.direction, this.group, this.tankFrame));
     }
     
     public void die() {
         this.living = false;
+    }
+    
+    public Group getGroup() {
+        return group;
+    }
+    
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+    
+    public int getTANK_WIDTH() {
+        return TANK_WIDTH;
+    }
+    
+    public int getTANK_HEIGHT() {
+        return TANK_HEIGHT;
+    }
+    
+    public int getX() {
+        return x;
+    }
+    
+    public int getY() {
+        return y;
+    }
+    
+    public Direction getDirection() {
+        return direction;
+    }
+    
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+    
+    public boolean isMoving() {
+        return moving;
+    }
+    
+    public void setMoving(boolean moving) {
+        this.moving = moving;
     }
 }

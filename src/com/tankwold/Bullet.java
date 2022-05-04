@@ -1,6 +1,7 @@
 package com.tankwold;
 
 import com.tankwold.enums.Direction;
+import com.tankwold.enums.Group;
 
 import java.awt.*;
 
@@ -16,12 +17,14 @@ public class Bullet {
     private Direction direction;
     private boolean living = true;//子弹存活
     private TankFrame tankFrame = null;
+    private Group group = Group.BAD;//默认子弹是敌方的
     
-    public Bullet(int x, int y, Direction direction, TankFrame tankFrame) {
+    public Bullet(int x, int y, Direction direction, Group group, TankFrame tankFrame) {
         this.x = x;
         this.y = y;
         this.direction = direction;
         this.tankFrame = tankFrame;
+        this.group = group;
     }
     
     
@@ -88,6 +91,9 @@ public class Bullet {
     
     //碰撞测试
     public void collideWithTank(Tank tank) {
+        if (this.group == tank.getGroup()) return;//战友不护害
+    
+        //todo 用一个rectangle来记录位置 来做碰撞检测
         Rectangle rectangle1 = new Rectangle(this.x, this.y, BULLET_WIDTH, BULLET_HEIGHT);//bullet
         Rectangle rectangle2 = new Rectangle(tank.getX(), tank.getY(), tank.getTANK_WIDTH(), tank.getTANK_HEIGHT());//tank
         if (rectangle1.intersects(rectangle2)) {
@@ -98,5 +104,14 @@ public class Bullet {
     
     private void die() {
         this.living = false;
+    }
+    
+    
+    public Group getGroup() {
+        return group;
+    }
+    
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }
