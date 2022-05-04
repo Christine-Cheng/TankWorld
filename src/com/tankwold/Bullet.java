@@ -9,36 +9,27 @@ import java.awt.*;
  * @create 2022/5/2-22:37
  **/
 public class Bullet {
-    private Tank tank;
-    private int x, y;
-    private final static int BULLET_WIDTH = 10, BULLET_HEIGHT = 10;
-    private final static int SPEED = 20;
+    private int x, y;//子弹的起点
+    private static int BULLET_WIDTH = ResourceManager.bulletD.getWidth(), BULLET_HEIGHT = ResourceManager.bulletD.getHeight();
+    private final static int SPEED = 1;
     private Direction direction;
     private boolean live = true;//子弹存活
     private TankFrame tankFrame = null;
     
-    public Bullet(int x, int y, Direction direction, TankFrame tankFrame, Tank tank) {
-        this.x = tank.getX() + tank.getTANK_WIDTH() / 2 - BULLET_WIDTH / 2;
-        this.y = tank.getY() + tank.getTANK_HEIGHT() / 2 - BULLET_HEIGHT / 2;
+    public Bullet(int x, int y, Direction direction, TankFrame tankFrame) {
+        this.x = x;
+        this.y = y;
         this.direction = direction;
         this.tankFrame = tankFrame;
-        this.tank = tank;
     }
     
-    public Direction getDirection() {
-        return direction;
-    }
-    
-    public void setDirection(Direction direction) {
-        this.direction = direction;
-    }
     
     public void paint(Graphics graphics) {
         //if (!live) {
         //    //此为普通for循环下进行删除,配合TankFrame.java中for (int i = 0; i < bulletList.size(); i++)
         //    tankFrame.bulletList.remove(this);//子弹死了就移除
         //}
-    
+        
         Color color = graphics.getColor();
         //graphics.setColor(Color.red);
         //graphics.fillOval(x, y, BULLET_WIDTH, BULLET_HEIGHT);
