@@ -11,7 +11,7 @@ import java.awt.*;
 public class Bullet {
     private int x, y;//子弹的起点
     private static int BULLET_WIDTH = ResourceManager.bulletD.getWidth(), BULLET_HEIGHT = ResourceManager.bulletD.getHeight();
-    private final static int SPEED = 1;
+    private final static int SPEED = 20;
     private Direction direction;
     private boolean live = true;//子弹存活
     private TankFrame tankFrame = null;

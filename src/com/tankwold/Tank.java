@@ -127,7 +127,7 @@ public class Tank {
     public void fire() {
         //tankFrame.bullet = new Bullet(this.x, this.y, this.direction);//单个子弹不够用
     
-        //计算子弹的具体位置
+        //计算子弹的具体位置:根据坦克图片的大小,和左上角的位置计算子弹左上角的位置
         int BULLET_WIDTH = 0;//子弹的宽
         int BULLET_HEIGHT = 0;//子弹的高
         int bulletX = 0;
