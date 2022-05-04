@@ -24,6 +24,9 @@ public class TankFrame extends Frame {
     List<Tank> enemyTankList = new ArrayList<>();
     static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;//the game screen size
     
+    //测试爆炸
+    Exploded exploded = new Exploded(100, 100, this);
+    
     public TankFrame() {
         this.setSize(GAME_WIDTH, GAME_HEIGHT);
         this.setResizable(false);
@@ -141,6 +144,8 @@ public class TankFrame extends Frame {
                 bullet.collideWithTank(tank);
             }
         }
+    
+        exploded.paint(graphics);
     }
     
     
