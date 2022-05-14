@@ -116,27 +116,28 @@ public class Tank {
         switch (direction) {
             case LEFT:
                 BULLET_WIDTH = ResourceManager.bulletL.getWidth();
-                BULLET_HEIGHT = ResourceManager.bulletL.getHeight() + 1;//末尾常数微调
-                bulletX = this.x + this.getTANK_WIDTH() / 2 - this.getTANK_HEIGHT() / 2 - BULLET_WIDTH / 2 + 4;//末尾常数微调
-                bulletY = this.y + this.getTANK_HEIGHT() / 2 - BULLET_HEIGHT / 2;
+                BULLET_HEIGHT = ResourceManager.bulletL.getHeight();
+                //末尾常数微调
+                bulletX = this.x + this.getTANK_WIDTH() / 2 - this.getTANK_HEIGHT() / 2 - BULLET_WIDTH / 2 + 4;
+                bulletY = this.y + this.getTANK_HEIGHT() / 2 - BULLET_HEIGHT / 2 + 1;
                 break;
             case UP:
-                BULLET_WIDTH = ResourceManager.bulletU.getWidth() - 2;//末尾常数微调
+                BULLET_WIDTH = ResourceManager.bulletU.getWidth() - 2;
                 BULLET_HEIGHT = ResourceManager.bulletU.getHeight();
-                bulletX = this.x + this.getTANK_WIDTH() / 2 - BULLET_WIDTH / 2;
-                bulletY = this.y + this.getTANK_HEIGHT() / 2 - this.getTANK_WIDTH() / 2 - BULLET_HEIGHT / 2 + 4;//末尾常数微调
+                bulletX = this.x + this.getTANK_WIDTH() / 2 - BULLET_WIDTH / 2 - 2;
+                bulletY = this.y + this.getTANK_HEIGHT() / 2 - this.getTANK_WIDTH() / 2 - BULLET_HEIGHT / 2 + 4;
                 break;
             case RIGHT:
                 BULLET_WIDTH = ResourceManager.bulletR.getWidth();
                 BULLET_HEIGHT = ResourceManager.bulletR.getHeight();
-                bulletX = this.x + this.getTANK_WIDTH() / 2 + this.getTANK_HEIGHT() / 2 - BULLET_WIDTH / 2 - 4;//末尾常数微调
-                bulletY = this.y + this.getTANK_HEIGHT() / 2 - BULLET_HEIGHT / 2;
+                bulletX = this.x + this.getTANK_WIDTH() / 2 + this.getTANK_HEIGHT() / 2 - BULLET_WIDTH / 2 - 4;
+                bulletY = this.y + this.getTANK_HEIGHT() / 2 - BULLET_HEIGHT / 2 - 2;
                 break;
             case DOWN:
-                BULLET_WIDTH = ResourceManager.bulletD.getWidth() + 2;//末尾常数微调
+                BULLET_WIDTH = ResourceManager.bulletD.getWidth() + 2;
                 BULLET_HEIGHT = ResourceManager.bulletD.getHeight();
-                bulletX = this.x + this.getTANK_WIDTH() / 2 - BULLET_WIDTH / 2;
-                bulletY = this.y + this.getTANK_HEIGHT() / 2 + this.getTANK_WIDTH() / 2 - BULLET_HEIGHT / 2 - 4;//末尾常数微调
+                bulletX = this.x + this.getTANK_WIDTH() / 2 - BULLET_WIDTH / 2 + 2;
+                bulletY = this.y + this.getTANK_HEIGHT() / 2 + this.getTANK_WIDTH() / 2 - BULLET_HEIGHT / 2 - 4;
                 break;
         }
     
