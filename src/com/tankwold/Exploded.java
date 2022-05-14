@@ -20,7 +20,8 @@ public class Exploded {
         this.x = x;
         this.y = y;
         this.tankFrame = tankFrame;
-        
+    
+        new Audio("audio/explode.wav").play();
     }
     
     
