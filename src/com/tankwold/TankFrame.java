@@ -22,7 +22,7 @@ public class TankFrame extends Frame {
     //Bullet bullet = new Bullet(300, 300, Direction.DOWN);//单个子弹不够用
     List<Bullet> bulletList = new ArrayList<>();//set bullet's container
     List<Tank> enemyTankList = new ArrayList<>();
-    static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;//the game screen size
+    static final int GAME_WIDTH = 1080, GAME_HEIGHT = 960;//the game screen size
     
     //测试爆炸
     Exploded exploded = new Exploded(100, 100, this);
