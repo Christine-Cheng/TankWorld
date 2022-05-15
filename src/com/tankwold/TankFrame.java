@@ -22,10 +22,8 @@ public class TankFrame extends Frame {
     //Bullet bullet = new Bullet(300, 300, Direction.DOWN);//单个子弹不够用
     List<Bullet> bulletList = new ArrayList<>();//set bullet's container
     List<Tank> enemyTankList = new ArrayList<>();
+    List<Exploded> explodedList = new ArrayList<>();
     static final int GAME_WIDTH = 1080, GAME_HEIGHT = 960;//the game screen size
-    
-    //测试爆炸
-    Exploded exploded = new Exploded(100, 100, this);
     
     public TankFrame() {
         this.setSize(GAME_WIDTH, GAME_HEIGHT);
@@ -106,7 +104,8 @@ public class TankFrame extends Frame {
         //当前的子弹在飞出页面后依旧在内存中存在,这样就存在内存满溢出泄露
         //Java中的内存泄露和容器有关系,如果容器中的引用用完了不清除那么容易出现内存泄露的问题
         graphics.drawString("子弹的数目:" + bulletList.size(), 10, 60);
-        graphics.drawString("enemyTank的数目:" + enemyTankList.size(), 10, 80);
+        graphics.drawString("敌军的数目:" + enemyTankList.size(), 10, 80);
+        graphics.drawString("爆炸的数量:" + explodedList.size(), 10, 100);
         graphics.setColor(color);
     
         /**
@@ -136,6 +135,12 @@ public class TankFrame extends Frame {
             enemyTankList.get(i).paint(graphics);
         }
     
+        //exploded.paint(graphics);
+        //paint exploded
+        for (int i = 0; i < explodedList.size(); i++) {
+            explodedList.get(i).paint(graphics);
+        }
+    
         //test bullet collides with tank
         for (int i = 0; i < bulletList.size(); i++) {
             for (int j = 0; j < enemyTankList.size(); j++) {
@@ -144,8 +149,6 @@ public class TankFrame extends Frame {
                 bullet.collideWithTank(tank);
             }
         }
-    
-        exploded.paint(graphics);
     }
     
     

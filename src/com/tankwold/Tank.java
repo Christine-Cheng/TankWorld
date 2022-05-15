@@ -17,7 +17,7 @@ public class Tank {
     private int TANK_WIDTH = ResourceManager.tankD.getWidth();//默认取用tank向下的宽度
     private int TANK_HEIGHT = ResourceManager.tankD.getHeight();//默认取用tank向下的高度
     private Direction direction = Direction.DOWN;//set direction's initial value
-    private static final int SPEED = 10;//define step constants
+    private static final int SPEED = 5;//define step constants
     private boolean moving = true;//set default moving status
     private TankFrame tankFrame = null;
     private boolean living = true;//is tank survive
