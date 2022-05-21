@@ -7,9 +7,10 @@ import java.awt.*;
  * @create 2022/5/2-22:37
  **/
 public class Exploded {
+    
     private int x, y;
-    private static int BULLET_WIDTH = ResourceManager.explodeArr[0].getWidth();
-    private static int BULLET_HEIGHT = ResourceManager.explodeArr[0].getHeight();
+    private static int EXPLODED_WIDTH = ResourceManager.explodeArr[0].getWidth();
+    private static int EXPLODED_HEIGHT = ResourceManager.explodeArr[0].getHeight();
     
     //private boolean living = true;
     private TankFrame tankFrame = null;
@@ -32,5 +33,13 @@ public class Exploded {
             //step = 0;
             tankFrame.explodedList.remove(this);
         }
+    }
+    
+    public static int getExplodedWidth() {
+        return EXPLODED_WIDTH;
+    }
+    
+    public static int getExplodedHeight() {
+        return EXPLODED_HEIGHT;
     }
 }
