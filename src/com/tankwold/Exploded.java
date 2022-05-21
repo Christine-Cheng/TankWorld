@@ -21,7 +21,8 @@ public class Exploded {
         this.y = y;
         this.tankFrame = tankFrame;
     
-        new Audio("audio/explode.wav").play();
+        //new Audio("audio/explode.wav").play();
+        new Thread(() -> new Audio("audio/explode.wav").play()).start();//启动一个线程干活,这样爆炸就不会卡顿了
     }
     
     
