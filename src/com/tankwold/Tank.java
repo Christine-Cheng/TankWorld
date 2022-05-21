@@ -97,7 +97,15 @@ public class Tank {
                 break;
         }
     
-        if (random.nextInt(10) > 8) this.fire();//随机开火
+        if (this.group == Group.BAD && random.nextInt(100) > 95) this.fire();//敌方坦克随机开火
+    
+        if (this.group == Group.BAD && random.nextInt(100) > 95) //敌方坦克才会随机方向
+            randomDirection();
+    }
+    
+    private void randomDirection() {
+        //用4以内的随机数作为数组的下标,从Direction这个数组中取值
+        this.direction = Direction.values()[random.nextInt(4)];
     }
     
     /**
@@ -107,7 +115,7 @@ public class Tank {
      */
     public void fire() {
         //tankFrame.bullet = new Bullet(this.x, this.y, this.direction);//单个子弹不够用
-    
+        
         //计算子弹的具体位置:根据坦克图片的大小,和左上角的位置计算子弹左上角的位置
         int BULLET_WIDTH = 0;//子弹的宽
         int BULLET_HEIGHT = 0;//子弹的高
