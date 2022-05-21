@@ -97,8 +97,8 @@ public class Bullet {
         Rectangle rectangle1 = new Rectangle(this.x, this.y, BULLET_WIDTH, BULLET_HEIGHT);//bullet
         Rectangle rectangle2 = new Rectangle(tank.getX(), tank.getY(), tank.getTANK_WIDTH(), tank.getTANK_HEIGHT());//tank
         if (rectangle1.intersects(rectangle2)) {
-            this.die();
-            tank.die();
+            this.die();//子弹
+            tank.die();//坦克
     
             //exploding when bullet collided with tank
             tankFrame.explodedList.add(new Exploded(x, y, tankFrame));
