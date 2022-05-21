@@ -14,8 +14,8 @@ import java.util.Random;
  **/
 public class Tank {
     private int x, y;//坦克的起点
-    private int TANK_WIDTH = ResourceManager.tankD.getWidth();//默认取用tank向下的宽度
-    private int TANK_HEIGHT = ResourceManager.tankD.getHeight();//默认取用tank向下的高度
+    private int TANK_WIDTH = this.group == Group.BAD ? ResourceManager.badTankU.getWidth() : ResourceManager.goodTankU.getWidth();//默认取用tank向上的宽度
+    private int TANK_HEIGHT = this.group == Group.BAD ? ResourceManager.badTankU.getHeight() : ResourceManager.goodTankU.getHeight();//默认取用tank向上的高度
     private Direction direction = Direction.DOWN;//set direction's initial value
     private static final int SPEED = 5;//define step constants
     private boolean moving = true;//set default moving status
@@ -27,20 +27,20 @@ public class Tank {
     {
         switch (this.direction) {
             case LEFT:
-                TANK_WIDTH = ResourceManager.tankL.getWidth();
-                TANK_HEIGHT = ResourceManager.tankL.getHeight();
+                TANK_WIDTH = this.group == Group.BAD ? ResourceManager.badTankL.getWidth() : ResourceManager.goodTankL.getWidth();
+                TANK_HEIGHT = this.group == Group.BAD ? ResourceManager.badTankL.getHeight() : ResourceManager.goodTankL.getHeight();
                 break;
             case UP:
-                TANK_WIDTH = ResourceManager.tankU.getWidth();
-                TANK_HEIGHT = ResourceManager.tankU.getHeight();
+                TANK_WIDTH = this.group == Group.BAD ? ResourceManager.badTankU.getWidth() : ResourceManager.goodTankU.getWidth();
+                TANK_HEIGHT = this.group == Group.BAD ? ResourceManager.badTankU.getHeight() : ResourceManager.goodTankU.getHeight();
                 break;
             case RIGHT:
-                TANK_WIDTH = ResourceManager.tankR.getWidth();
-                TANK_HEIGHT = ResourceManager.tankR.getHeight();
+                TANK_WIDTH = this.group == Group.BAD ? ResourceManager.badTankR.getWidth() : ResourceManager.goodTankR.getWidth();
+                TANK_HEIGHT = this.group == Group.BAD ? ResourceManager.badTankR.getHeight() : ResourceManager.goodTankR.getHeight();
                 break;
             case DOWN:
-                TANK_WIDTH = ResourceManager.tankD.getWidth();
-                TANK_HEIGHT = ResourceManager.tankD.getHeight();
+                TANK_WIDTH = this.group == Group.BAD ? ResourceManager.badTankD.getWidth() : ResourceManager.goodTankD.getWidth();
+                TANK_HEIGHT = this.group == Group.BAD ? ResourceManager.badTankD.getHeight() : ResourceManager.goodTankD.getHeight();
                 break;
         }
     }
@@ -65,16 +65,16 @@ public class Tank {
         //坦克:图片代替
         switch (direction) {
             case LEFT:
-                graphics.drawImage(ResourceManager.tankL, x, y, null);
+                graphics.drawImage(this.group == Group.BAD ? ResourceManager.badTankL : ResourceManager.goodTankL, x, y, null);
                 break;
             case UP:
-                graphics.drawImage(ResourceManager.tankU, x, y, null);
+                graphics.drawImage(this.group == Group.BAD ? ResourceManager.badTankU : ResourceManager.goodTankU, x, y, null);
                 break;
             case RIGHT:
-                graphics.drawImage(ResourceManager.tankR, x, y, null);
+                graphics.drawImage(this.group == Group.BAD ? ResourceManager.badTankR : ResourceManager.goodTankR, x, y, null);
                 break;
             case DOWN:
-                graphics.drawImage(ResourceManager.tankD, x, y, null);
+                graphics.drawImage(this.group == Group.BAD ? ResourceManager.badTankD : ResourceManager.goodTankD, x, y, null);
                 break;
         }
         move();
