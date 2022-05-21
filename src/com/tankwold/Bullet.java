@@ -13,7 +13,7 @@ public class Bullet {
     private int x, y;//子弹的起点
     private static int BULLET_WIDTH = ResourceManager.bulletD.getWidth();//默认取用子弹向下的宽度
     private static int BULLET_HEIGHT = ResourceManager.bulletD.getHeight();//默认取用子弹向下的高度
-    private final static int SPEED = 10;
+    private final static int SPEED = 15;
     private Direction direction;
     private boolean living = true;//子弹存活
     private TankFrame tankFrame = null;
@@ -100,8 +100,11 @@ public class Bullet {
             this.die();//子弹
             tank.die();//坦克
     
+    
+            int explodedX = tank.getX() + tank.getTANK_WIDTH() / 2 - Exploded.getExplodedWidth() / 2;
+            int explodedY = tank.getY() + tank.getTANK_HEIGHT() / 2 - Exploded.getExplodedHeight() / 2;
             //exploding when bullet collided with tank
-            tankFrame.explodedList.add(new Exploded(x, y, tankFrame));
+            tankFrame.explodedList.add(new Exploded(explodedX, explodedY, tankFrame));
         }
     }
     
