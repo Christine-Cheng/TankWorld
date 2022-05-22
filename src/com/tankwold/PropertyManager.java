@@ -26,4 +26,18 @@ public class PropertyManager {
         }
         return properties.get(key);
     }
+    
+    public static Integer getInteger(String key) {
+        if (key == null) {
+            return 0;
+        }
+        return Integer.parseInt((String) properties.get(key));
+    }
+    
+    public static String getString(String key) {
+        if (key == null || key.equals("")) {
+            return "";
+        }
+        return (String) properties.get(key);
+    }
 }
