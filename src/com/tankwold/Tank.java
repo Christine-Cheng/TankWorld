@@ -108,14 +108,20 @@ public class Tank {
     
     private void boundsCheck() {
         //x,y是坦克可以移动的坐标长度
-        if (this.x < 0) x = 1;
+        if (this.x < 10) {
+            x = 10;
+        }
         //if (this.x < 30) x = 30;
-        if (this.y < 0) y = 1;
+        if (this.y < 35) {
+            y = 35;
+        }
         //if (this.y < 30) y = 30;
-        if (this.x > TankFrame.GAME_WIDTH - this.getTANK_WIDTH() - 2)
-            x = TankFrame.GAME_WIDTH - this.getTANK_WIDTH() - 2;
-        if (this.y > TankFrame.GAME_HEIGHT - this.getTANK_HEIGHT() - 2)
-            y = TankFrame.GAME_HEIGHT - this.getTANK_HEIGHT() - 2;
+        if (this.x > TankFrame.GAME_WIDTH - this.getTANK_WIDTH() - 10) {
+            x = TankFrame.GAME_WIDTH - this.getTANK_WIDTH() - 10;
+        }
+        if (this.y > TankFrame.GAME_HEIGHT - this.getTANK_HEIGHT() - 10) {
+            y = TankFrame.GAME_HEIGHT - this.getTANK_HEIGHT() - 10;
+        }
     }
     
     private void randomDirection() {
