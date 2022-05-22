@@ -27,7 +27,7 @@ public class PropertyManager {
         return properties.get(key);
     }
     
-    public static Integer getInteger(String key) {
+    public static int getInteger(String key) {
         if (key == null) {
             return 0;
         }
