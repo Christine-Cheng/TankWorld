@@ -23,6 +23,7 @@ public class Tank {
     private boolean living = true;//is tank survive
     private Group group = Group.BAD;//default tank's group is bad
     private Random random = new Random();
+    Rectangle rect = new Rectangle();//初始化的时候就进行new Rectangle,这样属性就跟着对象走了
     
     {
         switch (this.direction) {
@@ -51,6 +52,10 @@ public class Tank {
         this.direction = direction;
         this.tankFrame = tankFrame;
         this.group = group;
+        rect.x = this.x;
+        rect.y = this.y;
+        rect.width = TANK_WIDTH;
+        rect.height = TANK_HEIGHT;
     }
     
     
@@ -97,13 +102,20 @@ public class Tank {
                 break;
         }
     
-        if (this.group == Group.BAD && random.nextInt(100) > 95) this.fire();//敌方坦克随机开火
-    
-        if (this.group == Group.BAD && random.nextInt(100) > 95) //敌方坦克才会随机方向
+        if (this.group == Group.BAD && random.nextInt(100) > 95) {
+            //敌方坦克随机开火
+            this.fire();
+        }
+        if (this.group == Group.BAD && random.nextInt(100) > 95) {
+            //敌方坦克才会随机方向
             randomDirection();
-    
+        }
         //添加边界检测,坦克不能超出画布边界,也不能和画布中的标题重合
         boundsCheck();
+    
+        //update rectangle 更新边界检测矩形边界
+        rect.x = this.x;
+        rect.y = this.y;
     }
     
     private void boundsCheck() {
