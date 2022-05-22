@@ -11,8 +11,11 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         TankFrame frame = new TankFrame();
     
+        //从配置文件中获取要初始化坦克的数量
+        int initTankCount = Integer.parseInt((String) PropertyManager.getValue("initTankCount"));
+    
         //初始化敌方坦克
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < initTankCount; i++) {
             frame.enemyTankList.add(new Tank(50 + i * 80, 200, Direction.DOWN, Group.BAD, frame));
         }
     
