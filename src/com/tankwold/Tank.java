@@ -101,6 +101,21 @@ public class Tank {
     
         if (this.group == Group.BAD && random.nextInt(100) > 95) //敌方坦克才会随机方向
             randomDirection();
+    
+        //添加边界检测,坦克不能超出画布边界,也不能和画布中的标题重合
+        boundsCheck();
+    }
+    
+    private void boundsCheck() {
+        //x,y是坦克可以移动的坐标长度
+        if (this.x < 0) x = 1;
+        //if (this.x < 30) x = 30;
+        if (this.y < 0) y = 1;
+        //if (this.y < 30) y = 30;
+        if (this.x > TankFrame.GAME_WIDTH - this.getTANK_WIDTH() - 2)
+            x = TankFrame.GAME_WIDTH - this.getTANK_WIDTH() - 2;
+        if (this.y > TankFrame.GAME_HEIGHT - this.getTANK_HEIGHT() - 2)
+            y = TankFrame.GAME_HEIGHT - this.getTANK_HEIGHT() - 2;
     }
     
     private void randomDirection() {
