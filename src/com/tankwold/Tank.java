@@ -60,8 +60,9 @@ public class Tank {
     
     
     public void paint(Graphics graphics) {
-        if (!living)
+        if (!living) {
             tankFrame.enemyTankList.remove(this);//if tank is dead , tank will not paint , and remove tank from container
+        }
     
         Color color = graphics.getColor();
         //graphics.setColor(Color.yellow);
@@ -86,7 +87,9 @@ public class Tank {
     }
     
     private void move() {
-        if (!moving) return;//when tank stops,straight return;
+        if (!moving) {
+            return;//when tank stops,straight return;
+        }
         switch (direction) {
             case LEFT:
                 x -= SPEED;
